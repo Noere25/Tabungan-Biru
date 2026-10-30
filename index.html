@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabungan Biru</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+    <!-- HALAMAN LOGIN -->
+    <section id="loginPage" class="card auth-box">
+        <h1>Tabungan Biru</h1>
+        <p>Silakan masuk untuk mengelola Tabunganmu.</p>
+
+        <form id="loginForm">
+            <input
+                type="text"
+                id="loginUsername"
+                placeholder="Username"
+                autocomplete="username"
+                required
+            >
+
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Kata sandi"
+                    autocomplete="current-password"
+                    required
+                >
+                <button
+                    type="button"
+                    onclick="togglePassword('loginPassword', this)"
+                >Tampilkan</button>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div id="loginMessage" class="message" role="status"></div>
+
+        <p style="text-align:center; margin-top:18px">
+            Belum punya akun?
+        </p>
+        <button class="secondary" onclick="showPage('registerPage')">
+            Registrasi
+        </button>
+    </section>
+
+
+    <!-- HALAMAN REGISTRASI -->
+    <section id="registerPage" class="card auth-box hidden">
+        <h1>Buat Akun</h1>
+        <p>Daftar untuk mulai mencatat pemasukan dan pengeluaran.</p>
+
+        <form id="registerForm">
+            <input
+                type="text"
+                id="registerUsername"
+                placeholder="Buat username"
+                minlength="3"
+                maxlength="30"
+                autocomplete="username"
+                required
+            >
+
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Buat kata sandi"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                >
+                <button
+                    type="button"
+                    onclick="togglePassword('registerPassword', this)"
+                >Tampilkan</button>
+            </div>
+
+            <div class="password-wrap">
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Ulangi kata sandi"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                >
+                <button
+                    type="button"
+                    onclick="togglePassword('confirmPassword', this)"
+                >Tampilkan</button>
+            </div>
+
+            <button type="submit">Daftar</button>
+        </form>
+
+        <div id="registerMessage" class="message" role="status"></div>
+
+        <p style="text-align:center; margin-top:18px">
+            Sudah punya akun?
+        </p>
+        <button class="secondary" onclick="showPage('loginPage')">
+            Kembali ke Login
+        </button>
+    </section>
+
+
+    <!-- DASHBOARD TABUGAN -->
+    <section id="dashboardPage" class="hidden">
+        <div class="header">
+            <div>
+                <h1>Tabungan Biru</h1>
+                <p>Halo, <span id="welcomeUser"></span>!</p>
+            </div>
+            <button class="danger" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <p>Total Saldo</p>
+                <h2 id="balance">Rp0</h2>
+            </div>
+            <div class="stat">
+                <p>Total Pemasukan</p>
+                <h2 class="income" id="totalIncome">Rp0</h2>
+            </div>
+            <div class="stat">
+                <p>Total Pengeluaran</p>
+                <h2 class="expense" id="totalExpense">Rp0</h2>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Tambah Transaksi</h2>
+
+            <form id="transactionForm">
+                <select id="transactionType" required>
+                    <option value="income">Pemasukan</option>
+                    <option value="expense">Pengeluaran</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="transactionName"
+                    placeholder="Nama transaksi"
+                    maxlength="100"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="transactionAmount"
+                    placeholder="Nominal (Rp)"
+                    min="1"
+                    step="1"
+                    required
+                >
+
+                <input type="date" id="transactionDate" required>
+
+                <button type="submit">Simpan Transaksi</button>
+            </form>
+
+            <div id="transactionMessage" class="message" role="status"></div>
+        </div>
+
+        <div class="card">
+            <h2>Riwayat Transaksi</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Transaksi</th>
+                            <th>Jenis</th>
+                            <th>Nominal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionList"></tbody>
+                </table>
+            </div>
+
+            <p id="emptyMessage" class="empty">
+                Belum ada transaksi.
+            </p>
+        </div>
+    </section>
+
+</div>
+
+    <a class="tiktok-float" href="https://www.tiktok.com/@noerekk?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi TikTok">
+        <span class="tiktok-mark">♪</span>
+        <span>@noerekk</span>
+    </a>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
